@@ -15,6 +15,8 @@ using Microsoft.VisualStudio.Text.Editor;
 
 namespace Microsoft.VisualStudio.Language.Spellchecker
 {
+    using System.Windows.Markup;
+
     [Export(typeof(IViewTaggerProvider))]
     [ContentType("any")]
     [TagType(typeof(MisspellingTag))]
@@ -329,7 +331,7 @@ namespace Microsoft.VisualStudio.Language.Spellchecker
         {
             TextBox textBox = new TextBox();
             textBox.SpellCheck.IsEnabled = true;
-
+            textBox.Language = XmlLanguage.GetLanguage("en-US");
             ITextSnapshot snapshot = _buffer.CurrentSnapshot;
 
             foreach (var dirtySpan in dirtySpans)
